@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 
  *
 
- * Project 6.
+ * Project 7.
 
  * @author James Kirkley
 

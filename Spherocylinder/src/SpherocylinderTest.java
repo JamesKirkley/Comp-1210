@@ -1,363 +1,160 @@
-
 import org.junit.Assert;
-
+/*import static org.junit.Assert.*;*/
 import org.junit.Before;
-
 import org.junit.Test;
-
-
 /**
-
- * test stuff.
-
+ * does stuff for sphereocylinder.
  *
-
- * Project 6.
-
+ * Project 7.
  * @author James Kirkley
-
- * @version October 16, 2020
-
+ * @version October 30, 2020
  */
-
-
 public class SpherocylinderTest {
 
 
-
     /** Fixture initialization (common initialization
-
      *  for all tests). **/
-
     @Before public void setUp() {
-
     }
 
 
-    /** tests getLabel. **/
+    /** A test that always fails. **/
+   /*
+   @Test public void defaultTest() {
+      Assert.assertEquals("Default test added by jGRASP. Delete "
+            + "this test once you have added your own.", 0, 1);
+   }
+   */
+    /** Tests the set methods. */
+    @Test public void gettersTest()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("getLabel test",
+                "test", s.getLabel());
+        Assert.assertEquals("getRadius test",
+                1, s.getRadius(), .0001);
+        Assert.assertEquals("getCylinderHeighgt test",
+                2, s.getCylinderHeight(), .0001);
+    }
 
-    @Test public void getLabelTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 1.2);
-
-        String label = bob.getLabel();
-
-        Assert.assertEquals("Bob", label);
+    /** Tets set label true. */
+    @Test public void setLabelTrue()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("setLabelTrue test",
+                true, s.setLabel("newTest"));
 
     }
 
+    /** Tests set labe false. */
+    @Test public void setLabelFalse()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("setLabelFalse test",
+                false, s.setLabel(null));
+    }
 
-    /** tests setLabel true. **/
+    /** Tests set radius true. */
+    @Test public void setRadiusTrue()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("setRadiusTrue test",
+                true, s.setRadius(5));
+    }
 
-    @Test public void setLabelTrueTest() {
+    /** Tests set radius false. */
+    @Test public void setRadiusFalse()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("setRadiusFalse test",
+                false, s.setRadius(-1));
+    }
 
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 1.2);
+    /** Tests set cylinder height true. */
+    @Test public void setCylinderHeightTrue()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("setCylinderHeightTrue test",
+                true, s.setCylinderHeight(5));
+    }
 
-        boolean yes = false;
+    /** Tests set cylinder height false. */
+    @Test public void setCylinderHeightFalse()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("setCylinderHeightFalse test",
+                false, s.setCylinderHeight(-1));
+    }
 
-        String label = "jane";
+    /** Tests cicumference. */
+    @Test public void circumference()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("cicumference test",
+                6.2831, s.circumference(), .0001);
+    }
 
-        yes = bob.setLabel(label);
+    /** Tests surface area. */
+    @Test public void surfaceArea()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("surfaceArea test",
+                25.1327, s.surfaceArea(), .0001);
+    }
 
-        Assert.assertEquals(bob.getLabel(), label);
+    /** Tests volume. */
+    @Test public void volume()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("volume test",
+                10.4719, s.volume(), .0001);
+    }
 
-        Assert.assertTrue(yes);
+    /** Tests toString. */
+    @Test public void toStringTest()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Assert.assertEquals("toString test",
+                true,
+                s.toString().contains("Spherocylinder \"test\""
+                        + " with radius 1.0"));
+    }
+
+    /** Tests equals. */
+    @Test public void equals()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        Spherocylinder s2 = new Spherocylinder("test", 1, 2);
+
+        Assert.assertEquals("equalst true test",
+                true, s.equals(s2));
+
+        s2 = new Spherocylinder("test2", 1, 2);
+        Assert.assertEquals("equals false test",
+                false, s.equals(s2));
+
+        s2 = new Spherocylinder("test", 3, 2);
+        Assert.assertEquals("equals false test",
+                false, s.equals(s2));
+
+        s2 = new Spherocylinder("test", 1, 3);
+        Assert.assertEquals("equals false test",
+                false, s.equals(s2));
+
+        Assert.assertEquals("equals false test",
+                false, s.equals("obj"));
+
+        Assert.assertEquals("equals false test",
+                0, s.hashCode());
 
     }
 
-
-
-    /** tests setLabel false. **/
-
-    @Test public void setLabelFalseTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 1.2);
-
-        boolean yes = bob.setLabel(null);
-
-        Assert.assertFalse(yes);
-
+    /** Tests count. */
+    @Test public void count()
+    {
+        Spherocylinder s = new Spherocylinder("test", 1, 2);
+        s.resetCount();
+        Assert.assertEquals("getCount test",
+                0, s.getCount(), .0001);
     }
-
-
-
-    /** tests getRadius. **/
-
-    @Test public void getRadiusTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 1.2);
-
-        double radius = bob.getRadius();
-
-        Assert.assertEquals(2.3, radius, .000001);
-
-    }
-
-
-    /** tests getCylinderHeight. **/
-
-    @Test public void getCylinderHeightTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 1.2);
-
-        double cylHeight = bob.getCylinderHeight();
-
-        Assert.assertEquals(1.2, cylHeight, .000001);
-
-    }
-
-
-    /** tests setCylinderHeight True. **/
-
-    @Test public void setCylinderHeightTrueTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 1.2);
-
-        boolean yes = false;
-
-        double num = 3.4;
-
-        yes = bob.setCylinderHeight(num);
-
-        Assert.assertEquals(bob.getCylinderHeight(), num, .000001);
-
-        Assert.assertTrue(yes);
-
-    }
-
-
-    /** tests setCylinderHeight false. **/
-
-    @Test public void setCylinderHeightFalseTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 1.2);
-
-        boolean yes = bob.setCylinderHeight(-1);
-
-        Assert.assertFalse(yes);
-
-    }
-
-
-    /** tests setRadius true. **/
-
-    @Test public void setRadiusTrueTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 1.2);
-
-        boolean yes = false;
-
-        double num = 7.9;
-
-        yes = bob.setRadius(num);
-
-        Assert.assertEquals(bob.getRadius(), num, .000001);
-
-        Assert.assertTrue(yes);
-
-    }
-
-
-    /** tests setRadius false. **/
-
-    @Test public void setRadiusFalseTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 1.2);
-
-        boolean yes = bob.setRadius(-1);
-
-        Assert.assertFalse(yes);
-
-    }
-
-
-
-    /** tests circumference. **/
-
-    @Test public void circumferenceTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 0, 1.2);
-
-        double circumference = bob.circumference();
-
-        Assert.assertEquals(0, circumference, .000001);
-
-    }
-
-
-    /** tests surfaceArea. **/
-
-    @Test public void surfaceAreaTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 0, 0);
-
-        double surfaceArea = bob.surfaceArea();
-
-        Assert.assertEquals(0, surfaceArea, .000001);
-
-    }
-
-
-    /** tests volume. **/
-
-    @Test public void volumeTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 0, 0);
-
-        double volume = bob.volume();
-
-        Assert.assertEquals(0, volume, .000001);
-
-    }
-
-
-    /** tests getCount. **/
-
-    @Test public void getCountTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 2.9);
-
-        int count = Spherocylinder.getCount();
-
-        Assert.assertEquals(Spherocylinder.getCount(), count);
-
-    }
-
-
-    /** tests resetCount. **/
-
-    @Test public void resetCountTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 2.9);
-
-        Spherocylinder.resetCount();
-
-        int count = Spherocylinder.getCount();
-
-        Assert.assertEquals(0, count);
-
-    }
-
-
-    /** tests equals true. **/
-
-    @Test public void equalsTrueTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 2.3);
-
-        Spherocylinder obj = new Spherocylinder("Bob", 2.3, 2.3);
-
-        boolean yes = false;
-
-        yes = bob.equals(obj);
-
-        Assert.assertEquals(bob, obj);
-
-        Assert.assertTrue(yes);
-
-    }
-
-
-    /** tests equals label. **/
-
-    @Test public void equalsLabelTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 2.3);
-
-        Spherocylinder obj = new Spherocylinder("Jane", 2.3, 2.3);
-
-        boolean yes = false;
-
-        yes = bob.equals(obj);
-
-        Assert.assertFalse(yes);
-
-    }
-
-
-    /** tests equals radius. **/
-
-    @Test public void equalsRadiusTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 2.3);
-
-        Spherocylinder obj = new Spherocylinder("Bob", 1.7, 2.3);
-
-        boolean yes = false;
-
-        yes = bob.equals(obj);
-
-        Assert.assertFalse(yes);
-
-    }
-
-
-    /** tests equals cyl height. **/
-
-    @Test public void equalsCylHeightTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 2.3, 2.3);
-
-        Spherocylinder obj = new Spherocylinder("Bob", 2.3, 1.7);
-
-        boolean yes = false;
-
-        yes = bob.equals(obj);
-
-        Assert.assertFalse(yes);
-
-    }
-
-
-
-    /** tests equals false. **/
-
-    @Test public void equalsFalseTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 1.2, 2.1);
-
-        String hello = "";
-
-        boolean yes = bob.equals(hello);
-
-        Assert.assertFalse(yes);
-
-    }
-
-
-
-    /** tests hashCode. **/
-
-    @Test public void hashCodeTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 1.2, 2.1);
-
-        int code = bob.hashCode();
-
-        Assert.assertEquals(0, code, .00001);
-
-    }
-
-
-    /** tests toString. **/
-
-    @Test public void toStringTest() {
-
-        Spherocylinder bob = new Spherocylinder("Bob", 4.3, 2.1);
-
-        String toString = "Spherocylinder \"Bob\" with radius 4.3"
-
-                + " and cylinder height 2.1 has:\n"
-
-                + "\tcircumference = 27.018 units\n"
-
-                + "\tsurface area = 289.089 square units\n"
-
-                + "\tvolume = 455.023 cubic units";
-
-        Assert.assertEquals(bob.toString(), toString);
-
-    }
-
-
 }
